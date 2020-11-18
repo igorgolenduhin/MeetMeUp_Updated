@@ -1,0 +1,54 @@
+﻿@{
+    ViewBag.Title = "Create";
+}
+
+<div class="w-50">
+    <h1 class="m-4">Create new group</h1>
+    <form method="POST" action="Create" class="m-4">
+        <div class="list-group">
+            <h4>Group Name:</h4>
+            <input type="text" class="form-control" id="groupName" name="groupName" required>
+        </div>
+        <div id="members"></div>
+        <button type="button" class="btn btn-success my-4" id="addMember">Add member</button>
+        <button type="button" class="btn btn-danger my-4" id="deleteMember">Delete member</button>
+        <div id="members"></div>
+        <button type="submit" class="btn btn-primary btn-lg m-4">Save Group</button>
+    </form>
+
+</div>
+@section scripts {
+
+    <script type="text/javascript">
+
+    $(document).ready(function(){
+        $('#addMember').click(function () {
+            var dest = document.getElementById("members");
+            var container = document.createElement("div");
+            var label = document.createElement("label");
+            var input = document.createElement("input");
+            input.type = "email";
+            input.name = "member"
+            input.className = "form-control";
+            container.className = "member-item my-3";
+            label.textContent = "Member's email";
+
+            container.appendChild(label);
+            container.appendChild(input);
+            dest.appendChild(container);
+        });
+        $('#deleteMember').click(function () {
+            var count = $('.member-item').length;
+            console.log(count);
+            if (count > 0) {
+                $('.member-item').last().remove();
+            }
+        })
+    });
+
+    </script>
+
+}
+
+
+

@@ -1,0 +1,25 @@
+﻿@model IEnumerable<MeetMeUp_Updated.Models.Meeting>
+@{
+    ViewBag.Title = "Meetings";
+}
+
+<div class="container-fluid">
+    <h1 class="m-4">My meetings</h1>
+    <div class="list-group">
+
+        @foreach (var meeting in Model)
+        {
+            <a href="/Meeting/Show/@meeting.Id" class="list-group-item list-group-item-action">
+                <div class="group">
+                    <img class="rounded-circle mr-3" src="~/Content/Images/unknown_meeting.jpg"
+                         alt="meetingImage" width="100px">
+                    <h4 class="ml-4 mr-4">@meeting.Title</h4>
+                    <span>@meeting.Date.ToString("MM/dd/yyyy")</span>
+                    <span>@meeting.Time.ToString("h:mm tt")</span>
+                </div>
+            </a>
+        }
+    </div>
+    @Html.ActionLink("Create new meeting", "Create", "Meeting", new { @class = "btn btn-primary btn-lg m-4" })
+</div>
+
