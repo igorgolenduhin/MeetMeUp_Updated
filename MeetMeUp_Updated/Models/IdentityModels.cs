@@ -1,4 +1,5 @@
 ﻿using System.Data.Entity;
+using System.Drawing;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
@@ -29,5 +30,8 @@ namespace MeetMeUp_Updated.Models
         {
             return new ApplicationDbContext();
         }
+
+        public DbSet<Schedule> Schedules { get; set; }
+
     }
 }

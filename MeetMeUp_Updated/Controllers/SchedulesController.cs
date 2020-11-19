@@ -6,7 +6,6 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using MeetMeUp_Updated.DAL;
 using MeetMeUp_Updated.Models;
 using Microsoft.AspNet.Identity;
 
@@ -14,7 +13,7 @@ namespace MeetMeUp_Updated.Controllers
 {
     public class SchedulesController : Controller
     {
-        private MeetMeUpContext db = new MeetMeUpContext();
+        private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Schedules
         public ActionResult Index()
