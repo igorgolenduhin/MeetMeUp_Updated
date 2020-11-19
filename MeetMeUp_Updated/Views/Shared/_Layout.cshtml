@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNet.Identity
+
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -9,23 +11,42 @@
           crossorigin="anonymous">
     <link href="@Url.Content("~/Content/main.css")" rel="stylesheet" type="text/css" />
     @Scripts.Render("~/bundles/modernizr")
+
 </head>
 <body>
     <div class="d-flex" id="wrapper">
         <div class="bg-dark border-right" id="sidebar-wrapper">
             <div class="sidebar-heading text-light">
-                Greetings Stranger
+
+                @if (Request.IsAuthenticated)
+                {
+                    <text>Greetings @User.Identity.GetUserName()</text>
+                }
+                else
+                {
+                    <text>Greetings Stranger</text>;
+                }
+
             </div>
             <div class="list-group list-group-flush sidebar-links">
-                <a href="#" class="list-group-item list-group-item-action bg-dark text-light d-block">My profile</a>
+                <a href="/Profile/MyProfile" class="list-group-item list-group-item-action bg-dark text-light d-block">My profile</a>
                 <a href="/Group/Groups" class="list-group-item list-group-item-action bg-dark text-light d-block">My groups</a>
                 <a href="/Meeting/Meetings" class="list-group-item list-group-item-action bg-dark text-light d-block">My meetings</a>
             </div>
             <span class="spacer"></span>
-            <div class="list-group list-group-flush sidebar-links">
-                <a href="/Account/Login" class="list-group-item list-group-item-action bg-dark text-light d-block">Login</a>
-                <a href="/Account/Register" class="list-group-item list-group-item-action bg-dark text-light d-block">Signup</a>
-            </div>
+            @if (Request.IsAuthenticated)
+            {
+                <div class="list-group list-group-flush sidebar-links" asp-controller="Account">
+                    <a href="#" class="list-group-item list-group-item-action bg-dark text-light d-block">Log out</a>
+                </div>
+            }
+            else
+            {
+                <div class="list-group list-group-flush sidebar-links">
+                    <a href="/Account/Login" class="list-group-item list-group-item-action bg-dark text-light d-block">Login</a>
+                    <a href="/Account/Register" class="list-group-item list-group-item-action bg-dark text-light d-block">Signup</a>
+                </div>
+            }
         </div>
 
         <div id="page-content-wrapper">
@@ -47,10 +68,10 @@
     @RenderSection("scripts", required: false)
     <!-- Menu Toggle Script -->
     <script>
-    $("#menu-toggle").click(function(e) {
-      e.preventDefault();
-      $("#wrapper").toggleClass("toggled");
-    });
+        $("#menu-toggle").click(function (e) {
+            e.preventDefault();
+            $("#wrapper").toggleClass("toggled");
+        });
     </script>
 </body>
 </html>
