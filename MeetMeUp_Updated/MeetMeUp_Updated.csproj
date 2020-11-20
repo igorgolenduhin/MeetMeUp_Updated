@@ -185,6 +185,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MeetingController.cs" />
+    <Compile Include="Controllers\ProfileController.cs" />
     <Compile Include="Controllers\SchedulesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -192,6 +193,10 @@
     <Compile Include="Migrations\202011190014114_ImgUpdate.cs" />
     <Compile Include="Migrations\202011190014114_ImgUpdate.Designer.cs">
       <DependentUpon>202011190014114_ImgUpdate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202011190138212_kek.cs" />
+    <Compile Include="Migrations\202011190138212_kek.Designer.cs">
+      <DependentUpon>202011190138212_kek.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -267,9 +272,12 @@
     <Content Include="Views\Group\Create.cshtml" />
     <Content Include="Views\Meeting\Meetings.cshtml" />
     <Content Include="Views\Meeting\Create.cshtml" />
+    <Content Include="Views\Profile\MyProfile.cshtml" />
+    <Content Include="Views\Profile\ChangeImage.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Assets\Images\UserPics\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -287,6 +295,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202011190014114_ImgUpdate.resx">
       <DependentUpon>202011190014114_ImgUpdate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202011190138212_kek.resx">
+      <DependentUpon>202011190138212_kek.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -1,0 +1,43 @@
+﻿@model MeetMeUp_Updated.Models.ApplicationUser
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<div>
+    <h4>ApplicationUser</h4>
+    <hr />
+    <img src="@Model.UserImg" style="width:200px;" />
+    <dl class="dl-horizontal">
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.UserName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UserName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UserImg)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UserImg)
+        </dd>
+
+    </dl>
+
+    @Html.ActionLink("Edit picture", "ChangeImage", "Profile") |
+    @Html.ActionLink("Change password", "ChangePassword", "Manage")
+</div>
