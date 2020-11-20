@@ -1,9 +1,26 @@
-﻿@{
+﻿@model MeetMeUp_Updated.Models.Group
+@{
     ViewBag.Title = "Create";
 }
 
 <div class="w-50">
     <h1 class="m-4">Create new group</h1>
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="list-group">
+            @Html.LabelFor(model => model.GroupName)
+            @Html.EditorFor(model => model.GroupName, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.GroupName, "", new { @class = "text-danger" })
+        </div>
+
+        @Html.Partial("_CreatePartial", Model);
+        
+
+        <button type="submit" class="btn btn-primary btn-lg m-4">Save Group</button>
+
+    }
     <form method="POST" action="Create" class="m-4">
         <div class="list-group">
             <h4>Group Name:</h4>

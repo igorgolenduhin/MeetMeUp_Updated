@@ -47,7 +47,7 @@ namespace MeetMeUp_Updated.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ScheduleID,ApplicationUserID,Occupation,Day,StartTime,EndTime")] Schedule schedule)
+        public ActionResult Create([Bind(Include = "ApplicationUserID,Occupation,Day,StartTime,EndTime")] Schedule schedule)
         {
             if (ModelState.IsValid)
             {
