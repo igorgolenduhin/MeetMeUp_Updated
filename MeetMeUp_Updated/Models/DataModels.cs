@@ -20,9 +20,12 @@ namespace MeetMeUp_Updated.Models
 
     public class Group
     {
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int GroupID { get; set; }
         public string GroupName { get; set; }
-        public string[] Members { get; set; }
+
+        public string GroupImage { get; set; }
+        public virtual ICollection<ApplicationUser> Members { get; set; }
     }
 
     public class Meeting

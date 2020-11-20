@@ -33,6 +33,7 @@ namespace MeetMeUp_Updated.Models
         }
 
         public DbSet<Schedule> Schedules { get; set; }
+        public DbSet<Group> Groups { get; set; }
 
     }
 

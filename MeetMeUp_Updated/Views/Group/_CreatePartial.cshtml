@@ -1,0 +1,13 @@
+﻿@model MeetMeUp_Updated.Models.Group
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+    @foreach (var item in Model.Members)
+    {
+        <p>
+            @item.UserName
+        </p>
+        
+    }
+
