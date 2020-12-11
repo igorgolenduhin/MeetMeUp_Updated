@@ -181,12 +181,14 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\APIControllers\UsersController.cs" />
     <Compile Include="Controllers\GroupController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MeetingController.cs" />
     <Compile Include="Controllers\ProfileController.cs" />
     <Compile Include="Controllers\SchedulesController.cs" />
+    <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -201,6 +203,14 @@
     <Compile Include="Migrations\202011200506596_AddingGroupTable.cs" />
     <Compile Include="Migrations\202011200506596_AddingGroupTable.Designer.cs">
       <DependentUpon>202011200506596_AddingGroupTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202012070912332_groupMembersAdded.cs" />
+    <Compile Include="Migrations\202012070912332_groupMembersAdded.Designer.cs">
+      <DependentUpon>202012070912332_groupMembersAdded.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202012111133446_meetings_added.cs" />
+    <Compile Include="Migrations\202012111133446_meetings_added.Designer.cs">
+      <DependentUpon>202012111133446_meetings_added.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -280,9 +290,11 @@
     <Content Include="Views\Profile\MyProfile.cshtml" />
     <Content Include="Views\Profile\ChangeImage.cshtml" />
     <Content Include="Views\Group\_CreatePartial.cshtml" />
+    <Content Include="Views\Group\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Assets\Images\GroupPics\" />
     <Folder Include="Assets\Images\UserPics\" />
   </ItemGroup>
   <ItemGroup>
@@ -307,6 +319,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202011200506596_AddingGroupTable.resx">
       <DependentUpon>202011200506596_AddingGroupTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202012070912332_groupMembersAdded.resx">
+      <DependentUpon>202012070912332_groupMembersAdded.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202012111133446_meetings_added.resx">
+      <DependentUpon>202012111133446_meetings_added.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
