@@ -78,3 +78,26 @@
     margin: 20px;
     width: 70%;
 }
+
+.heading{
+    padding-left: 40px;
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+}
+.heading-text{
+    display: flex;
+    flex-direction: column;
+    justify-content:center;
+    margin-left: 50px;
+}
+.heading-text h2{
+    margin-bottom: 5px;
+}
+.group-details {
+    margin-top: 20px;
+    padding-left: 40px;
+}
+.group-details-members-item{
+    margin-bottom: 5px;
+}

@@ -36,9 +36,15 @@
             <span class="spacer"></span>
             @if (Request.IsAuthenticated)
             {
+                using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm"}))
+                {
+                    @Html.AntiForgeryToken()
+                
                 <div class="list-group list-group-flush sidebar-links" asp-controller="Account">
-                    <a href="#" class="list-group-item list-group-item-action bg-dark text-light d-block">Log out</a>
+                    <a href="javascript:document.getElementById('logoutForm').submit()"
+                       class="list-group-item list-group-item-action bg-dark text-light d-block">Log out</a>
                 </div>
+                }
             }
             else
             {

@@ -1,41 +1,64 @@
-﻿@{
+﻿@model MeetMeUp_Updated.Models.GroupCreateViewModel
+@{
     ViewBag.Title = "Create";
 }
 
 <div class="w-50">
     <h1 class="m-4">Create new group</h1>
-    <form method="POST" action="Create" class="m-4">
+    @using (Html.BeginForm("Create", "Group", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        @Html.AntiForgeryToken()
+
         <div class="list-group">
-            <h4>Group Name:</h4>
-            <input type="text" class="form-control" id="groupName" name="groupName" required>
+            @Html.LabelFor(model => model.GroupName)
+            @Html.EditorFor(model => model.GroupName, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.GroupName, "", new { @class = "text-danger" })
         </div>
-        <div id="members"></div>
+
+        <div class="list-group">
+            @Html.LabelFor(model => model.GroupImage)
+            <input type="file" name="GroupImage" id="GroupImage"/>
+            @Html.ValidationMessageFor(model => model.GroupImage, "", new { @class = "text-danger" })
+        </div>
+
+        <div id="members">
+            @Html.ValidationMessage("InvalidUser", new { @class = "text-danger" })
+        </div>
+        <div class="list-group">
+            <h4>Add member:</h4>
+            <input type="email" class="form-control" id="memberEmail" name="memberEmail" required>
+        </div>
         <button type="button" class="btn btn-success my-4" id="addMember">Add member</button>
         <button type="button" class="btn btn-danger my-4" id="deleteMember">Delete member</button>
-        <div id="members"></div>
+
+
+
+
         <button type="submit" class="btn btn-primary btn-lg m-4">Save Group</button>
-    </form>
+
+    }
 
 </div>
 @section scripts {
 
     <script type="text/javascript">
 
-    $(document).ready(function(){
-        $('#addMember').click(function () {
-            var dest = document.getElementById("members");
-            var container = document.createElement("div");
-            var label = document.createElement("label");
-            var input = document.createElement("input");
-            input.type = "email";
-            input.name = "member"
-            input.className = "form-control";
-            container.className = "member-item my-3";
-            label.textContent = "Member's email";
+        $(document).ready(function () {
+            $('#addMember').click(function () {
+                let value = $('#memberEmail').val();
+                var dest = document.getElementById("members");
+                var container = document.createElement("div");
+                var display = document.createElement("p");
+                var input = document.createElement("input");
+                display.append(value);
+                input.type = "hidden";
+                input.name = "Members";
+                input.className = "form-control";
+                input.setAttribute("value", value);
 
-            container.appendChild(label);
-            container.appendChild(input);
-            dest.appendChild(container);
+                container.appendChild(display);
+                container.appendChild(input);
+                dest.appendChild(container);
         });
         $('#deleteMember').click(function () {
             var count = $('.member-item').length;
