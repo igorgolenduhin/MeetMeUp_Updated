@@ -7,13 +7,13 @@ namespace MeetMeUp_Updated.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class meetings_added : IMigrationMetadata
+    public sealed partial class initial_after_fix : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(meetings_added));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(initial_after_fix));
         
         string IMigrationMetadata.Id
         {
-            get { return "202012111133446_meetings_added"; }
+            get { return "202012111932038_initial_after_fix"; }
         }
         
         string IMigrationMetadata.Source

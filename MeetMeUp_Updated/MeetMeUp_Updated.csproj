@@ -192,25 +192,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202011190014114_ImgUpdate.cs" />
-    <Compile Include="Migrations\202011190014114_ImgUpdate.Designer.cs">
-      <DependentUpon>202011190014114_ImgUpdate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202011190138212_kek.cs" />
-    <Compile Include="Migrations\202011190138212_kek.Designer.cs">
-      <DependentUpon>202011190138212_kek.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202011200506596_AddingGroupTable.cs" />
-    <Compile Include="Migrations\202011200506596_AddingGroupTable.Designer.cs">
-      <DependentUpon>202011200506596_AddingGroupTable.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202012070912332_groupMembersAdded.cs" />
-    <Compile Include="Migrations\202012070912332_groupMembersAdded.Designer.cs">
-      <DependentUpon>202012070912332_groupMembersAdded.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202012111133446_meetings_added.cs" />
-    <Compile Include="Migrations\202012111133446_meetings_added.Designer.cs">
-      <DependentUpon>202012111133446_meetings_added.cs</DependentUpon>
+    <Compile Include="Migrations\202012111932038_initial_after_fix.cs" />
+    <Compile Include="Migrations\202012111932038_initial_after_fix.Designer.cs">
+      <DependentUpon>202012111932038_initial_after_fix.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -311,20 +295,8 @@
     <Content Include="Scripts\jquery-3.4.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202011190014114_ImgUpdate.resx">
-      <DependentUpon>202011190014114_ImgUpdate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202011190138212_kek.resx">
-      <DependentUpon>202011190138212_kek.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202011200506596_AddingGroupTable.resx">
-      <DependentUpon>202011200506596_AddingGroupTable.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202012070912332_groupMembersAdded.resx">
-      <DependentUpon>202012070912332_groupMembersAdded.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202012111133446_meetings_added.resx">
-      <DependentUpon>202012111133446_meetings_added.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202012111932038_initial_after_fix.resx">
+      <DependentUpon>202012111932038_initial_after_fix.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
