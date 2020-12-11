@@ -5,19 +5,20 @@
 
 <div class="container-fluid">
     <h1 class="m-4">My groups</h1>
+    <hr/>
     <div class="list-group">
 
         @foreach (var group in Model)
         {
-            <a href="#" class="list-group-item list-group-item-action">
+            <a href=@Url.Action("Details","Group", new { id = group.GroupID}) class="list-group-item list-group-item-action">
                 <div class="group">
-                    <img class="rounded-circle mr-3" src="~/Content/Images/unknown_group.jpg"
-                         alt="groupImage" width="100px">
+                    <img class="rounded-circle mr-3" src=@group.GroupImage
+                         alt="groupImage" width="100px" height="100px">
                     <h4 class="ml-4 mr-4">@group.GroupName</h4>
                     <ul class="group-members">
                         @foreach (var member in group.Members)
                         {
-                            <li>@member</li>
+                            <li>@member.UserName</li>
                         }
                     </ul>
                 </div>
