@@ -18,7 +18,7 @@
             @foreach (var member in Model.Members)
             {
                 <li class="group group-details-members-item">
-                    <img class="rounded-circle mr-3" src=@Model.GroupImage 
+                    <img class="rounded-circle mr-3" src=@member.UserImg
                          alt="Group Member Image" style="width:30px;height:30px" />
                     <span>@member.UserName</span>
                 </li>
@@ -28,28 +28,22 @@
 
     <div class="group-details">
         <h3>Group Meetings:</h3>
+        <div class="list-group">
+
+            @foreach (var meeting in Model.Meetings)
+            {
+                <a href="/Meeting/Details/@meeting.MeetingID" class="list-group-item list-group-item-action">
+                    <div class="group">
+                        <img class="rounded-circle mr-3" src=@meeting.Image
+                             alt="meetingImage" style="width:100px;height:100px">
+                        <h4 class="ml-4 mr-4">@meeting.Title</h4>
+                        <span>@meeting.Date.ToString("MM/dd/yyyy")</span>
+                        <span>@meeting.Time.ToString("h:mm tt")</span>
+                    </div>
+                </a>
+            }
+        </div>
     </div>
+    @Html.ActionLink("Create new meeting", "Create", "Meeting", new { id = Model.GroupID }, new { @class = "btn btn-primary btn-lg m-4" })
 
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.GroupName)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.GroupName)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.GroupImage)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.GroupImage)
-        </dd>
-
-    </dl>
-</div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.GroupID }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+    

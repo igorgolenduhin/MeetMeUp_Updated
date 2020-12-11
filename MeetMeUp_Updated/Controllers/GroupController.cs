@@ -9,6 +9,7 @@ using System.Web;
 using System.Web.Mvc;
 using Microsoft.Owin.Security;
 using System.Net;
+using System.Data.Entity;
 
 namespace MeetMeUp_Updated.Controllers
 {
@@ -21,7 +22,7 @@ namespace MeetMeUp_Updated.Controllers
         public ActionResult Groups()
         {
             var user = db.Users.Find(User.Identity.GetUserId());
-            var allGroups = db.Groups.ToList();
+            var allGroups = db.Groups.Include(g => g.Members).ToList();
             var groups = allGroups.Where(g => g.Members.Contains(user)).ToList();
             return View(groups);
         }
@@ -53,7 +54,7 @@ namespace MeetMeUp_Updated.Controllers
                 //adding all provided users to the group
                 foreach (var email in groupCreateModel.Members)
                 {
-                    var member = db.Users.Where(m => m.Email == email).Single();
+                    var member = db.Users.Where(m => m.Email == email).SingleOrDefault();
                     //var member = UserManager.FindByEmail(email);
                     if (member == null)
                     {
