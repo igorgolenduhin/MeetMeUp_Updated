@@ -26,6 +26,7 @@ namespace MeetMeUp_Updated.Models
 
         public string GroupImage { get; set; } = "/Assets/Images/GroupPics/anonymous_group.png";
         public virtual ICollection<ApplicationUser> Members { get; set; }
+        public virtual ICollection<Meeting> Meetings { get; set; }
     }
 
     public class Meeting
@@ -38,22 +39,11 @@ namespace MeetMeUp_Updated.Models
         public DateTime Date { get; set; }
         [DataType(DataType.Time)]
         public DateTime Time { get; set; }
+        public string Image { get; set; } = "/Assets/Images/MeetingPics/anonymous_meeting.svg";
+        public string Place { get; set; }
         public virtual Group Group { get; set; }
     }
 
-    public class GroupList
-    {
-        static List<Group> groups = new List<Group>();
-
-        static public void addGroup(Group group)
-        {
-            groups.Add(group);
-        }
-        static public List<Group> getGroups()
-        {
-            return groups;
-        }
-    }
 
 
 

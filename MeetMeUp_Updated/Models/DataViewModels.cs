@@ -32,10 +32,15 @@ namespace MeetMeUp_Updated.Models
         [DataType(DataType.Time)]
         public DateTime Time { get; set; }
 
+        public HttpPostedFileBase Image { get; set; }
+
 
         [Required(ErrorMessage = "Please select one of your groups")]
         public string SelectedGroup { get; set; }
         public IEnumerable<SelectListItem> AllGroups { get; set; }
+
+        [Required(ErrorMessage = "Please provide a place for a meeting")]
+        public string Place { get; set; }
 
     }
 }

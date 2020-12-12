@@ -8,28 +8,35 @@ using System.Web.Mvc;
 
 namespace MeetMeUp_Updated.Controllers
 {
+    [Authorize]
     public class MeetingController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
         // GET: Meeting
         public ActionResult Meetings()
         {
-            return View(db.Meetings.ToList());
+            var allMeetings = db.Meetings.ToList();
+            var myMeetings = allMeetings.Where(m => getMyGroupsList().Contains(m.Group)).ToList();
+            return View(myMeetings);
         }
         //Get: Create Meeting
-        public ActionResult Create()
+        public ActionResult Create(int? id)
         {
             var model = new MeetingCreateViewModel();
-            model.AllGroups = getMyGroups();
+            model.AllGroups = getMyGroupsSelectList();
+            if (id != null)
+            {
+                model.SelectedGroup = id.ToString();
+            }
             return View(model);
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Title,Date,Time,SelectedGroup")] MeetingCreateViewModel model)
+        public ActionResult Create([Bind(Include = "Title,Date,Time,SelectedGroup,Place")] MeetingCreateViewModel model)
         {
             if (!ModelState.IsValid)
             {
-                model.AllGroups = getMyGroups();
+                model.AllGroups = getMyGroupsSelectList();
                 return View(model);
             }
 
@@ -37,6 +44,7 @@ namespace MeetMeUp_Updated.Controllers
             meeting.Title = model.Title;
             meeting.Date = model.Date;
             meeting.Time = model.Time;
+            meeting.Place = model.Place;
             meeting.GroupID = int.Parse(model.SelectedGroup);
 
 
@@ -45,22 +53,27 @@ namespace MeetMeUp_Updated.Controllers
             return RedirectToAction("Meetings");
         }
 
-        public ActionResult Show(int id)
+        public ActionResult Details(int id)
         {
-            //var model = MeetingList.getMeetings()[id];
-            return View();
+            var meeting = db.Meetings.Find(id);
+            return View(meeting);
         }
 
-        private List<SelectListItem> getMyGroups()
+        private List<SelectListItem> getMyGroupsSelectList()
         {
-            var user = db.Users.Find(User.Identity.GetUserId());
-            var allGroups = db.Groups.ToList();
-            return allGroups.Select(g =>
+            return getMyGroupsList().Select(g =>
                 new SelectListItem
                 {
                     Value = g.GroupID.ToString(),
                     Text = g.GroupName
                 }).ToList();
+        }
+
+        private List<Group> getMyGroupsList()
+        {
+            var user = db.Users.Find(User.Identity.GetUserId());
+            var allGroups = db.Groups.ToList();
+            return allGroups.Where(g => g.Members.Contains(user)).ToList();
         }
     }
 }
