@@ -19,10 +19,14 @@ namespace MeetMeUp_Updated.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Group
-        public ActionResult Groups()
+        public ActionResult Groups(String query)
         {
             var user = db.Users.Find(User.Identity.GetUserId());
             var allGroups = db.Groups.Include(g => g.Members).ToList();
+            if (query != null)
+            {
+                allGroups = allGroups.Where(g => g.GroupName.ToLower().Contains(query.ToLower())).ToList();
+            }
             var groups = allGroups.Where(g => g.Members.Contains(user)).ToList();
             return View(groups);
         }
@@ -98,8 +102,22 @@ namespace MeetMeUp_Updated.Controllers
             return View(group);
         }
 
+        [HttpGet]
+        public ActionResult ChangeImage(int? groupID)
+        {
+            if (groupID == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Group group = db.Groups.Find(groupID);
+            if (group == null)
+            {
+                return HttpNotFound();
+            }
+            return View(group);
+        }
         [HttpPost]
-        public ActionResult ChangeImage(HttpPostedFileBase fileUpload1)
+        public ActionResult ChangeImage(HttpPostedFileBase fileUpload1, int groupID)
         {
             if (fileUpload1 != null)
             {
@@ -107,10 +125,11 @@ namespace MeetMeUp_Updated.Controllers
                 string path = System.IO.Path.Combine(Server.MapPath("/Assets/Images/GroupPics/"), pic);
 
                 fileUpload1.SaveAs(path);
-                Group applicationGroup = db.Groups.Find();
+                Group applicationGroup = db.Groups.Find(groupID);
                 applicationGroup.GroupImage = "/Assets/Images/GroupPics/" + pic;
                 db.Entry(applicationGroup).State = System.Data.Entity.EntityState.Modified;
                 db.SaveChanges();
+                return RedirectToAction("Details", new { id = groupID});
             }
             return View();
         }
