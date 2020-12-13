@@ -275,6 +275,8 @@
     <Content Include="Views\Profile\ChangeImage.cshtml" />
     <Content Include="Views\Group\_CreatePartial.cshtml" />
     <Content Include="Views\Group\Details.cshtml" />
+    <Content Include="Views\Meeting\Details.cshtml" />
+    <Content Include="Views\Group\ChangeImage.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

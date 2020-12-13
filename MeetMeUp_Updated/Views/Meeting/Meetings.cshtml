@@ -15,8 +15,7 @@
                     <img class="rounded-circle mr-3" src=@meeting.Image
                          alt="meetingImage" style="width:100px;height:100px">
                     <h4 class="ml-4 mr-4">@meeting.Title</h4>
-                    <span>@meeting.Date.ToString("MM/dd/yyyy")</span>
-                    <span>@meeting.Time.ToString("h:mm tt")</span>
+                    <span>@meeting.Date.ToString("MM/dd/yyyy") at @meeting.Time.ToString("h:mm tt")</span>
                 </div>
             </a>
         }

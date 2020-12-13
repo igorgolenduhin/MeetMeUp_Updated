@@ -17,33 +17,15 @@
         </div>
     </div>
 
-    <dl class="dl-horizontal">
+    <div class="group-details">
+        <h3>Email:</h3>
+        <span>@Model.Email</span>
+    </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Email)
-        </dt>
+    <div class="group-details">
+        <h3>Username:</h3>
+        <span>@Model.UserName</span>
+    </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.Email)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.UserName)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.UserName)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.UserImg)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.UserImg)
-        </dd>
-
-    </dl>
-
-    @Html.ActionLink("Edit picture", "ChangeImage", "Profile") |
-    @Html.ActionLink("Change password", "ChangePassword", "Manage")
+    @Html.ActionLink("Change password", "ChangePassword", "Manage", new { @class = "btn btn-primary m-4" })
 </div>
