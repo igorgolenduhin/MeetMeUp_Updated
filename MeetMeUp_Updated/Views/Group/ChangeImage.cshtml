@@ -1,0 +1,20 @@
+﻿@model MeetMeUp_Updated.Models.Group
+
+@{
+    ViewBag.Title = "ChangeImage";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Change Group Image</h2>
+
+@using (Html.BeginForm("ChangeImage", "Group", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+    <p>@Html.DisplayNameFor(m => m.GroupImage)</p>
+    <p>@Html.DisplayFor(m => m.GroupImage)</p>
+
+    <input type="file" name="fileUpload1" required />
+
+    <input type="submit" value="Save" />
+}

@@ -98,6 +98,23 @@ namespace MeetMeUp_Updated.Controllers
             return View(group);
         }
 
+        [HttpPost]
+        public ActionResult ChangeImage(HttpPostedFileBase fileUpload1)
+        {
+            if (fileUpload1 != null)
+            {
+                string pic = System.IO.Path.GetFileName(fileUpload1.FileName);
+                string path = System.IO.Path.Combine(Server.MapPath("/Assets/Images/GroupPics/"), pic);
+
+                fileUpload1.SaveAs(path);
+                Group applicationGroup = db.Groups.Find();
+                applicationGroup.GroupImage = "/Assets/Images/GroupPics/" + pic;
+                db.Entry(applicationGroup).State = System.Data.Entity.EntityState.Modified;
+                db.SaveChanges();
+            }
+            return View();
+        }
+
 
 
 

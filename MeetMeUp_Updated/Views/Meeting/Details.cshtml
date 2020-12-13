@@ -1,0 +1,43 @@
+﻿@model MeetMeUp_Updated.Models.Meeting
+
+
+<div>
+    <h1 class="m-4">Meeting Details</h1>
+    <hr />
+
+    <div class="heading">
+        <img src=@Model.Image alt="Meeting Image" style="width:150px;height:150px" />
+        <div class="heading-text">
+            <h2>@Model.Title</h2>
+        </div>
+    </div>
+
+    <div class="group-details">
+        <h3>Group:</h3>
+        <span>@Model.Group.GroupName</span>
+    </div>
+
+    <div class="group-details">
+        <h3>Date and Time of Meeting</h3>
+        <span>@Model.Date.ToString("MM/dd/yyyy") at @Model.Time.ToString("h:mm tt")</span>
+    </div>
+
+    <div class="group-details">
+        <h3>Meeting Place</h3>
+        <span>@Model.Place</span>
+    </div>
+
+
+    <div class="group-details">
+        <h3>Meeting Members:</h3>
+        <ul class="group-members">
+            @foreach (var member in Model.Group.Members)
+            {
+                <li class="group group-details-members-item">
+                    <img class="rounded-circle mr-3" src=@member.UserImg
+                         alt="Group Member Image" style="width:30px;height:30px" />
+                    <span>@member.UserName</span>
+                </li>
+            }
+        </ul>
+    </div>
