@@ -5,17 +5,41 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>@ViewBag.Title</h2>
+<div class="container-fluid">
+    <h1 class="m-4">Change Profile Image</h1>
+    <hr />
+    @using (Html.BeginForm("ChangeImage", "Profile", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        @Html.AntiForgeryToken()
 
-@using (Html.BeginForm("ChangeImage", "Profile", FormMethod.Post, new {enctype = "multipart/form-data" }))
-{
-    @Html.AntiForgeryToken()
+        <input type="hidden" value="@Model.UserImg" name="groupID" />
 
-    <p>@Html.DisplayNameFor(m => m.UserImg)</p>
-    <p>@Html.DisplayFor(m => m.UserImg)</p>
+        <div class="heading">
+            <img id="groupImage" src=@Model.UserImg alt="Group Image" style="width:200px;height:200px" />
+        </div>
 
-    <input type="file" name="fileUpload1" required/>
+        <div class="group-details">
+            <input type="file" name="fileUpload1" class="form-control-file w-25" onchange="readURL(this)" required />
+            <button type="submit" class="btn btn-primary btn-lg my-4">Save</button>
+        </div>
+    }
 
-    <input type="submit" value="Save"/>
-}
+</div>
+
+
+
+<script>
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                $('#groupImage')
+                    .attr('src', e.target.result)
+            };
+
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+</script>
 

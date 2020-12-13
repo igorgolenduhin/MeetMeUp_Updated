@@ -1,21 +1,20 @@
-﻿@model MeetMeUp_Updated.Models.Group
-
+﻿@model MeetMeUp_Updated.Models.Meeting
 @{
     ViewBag.Title = "ChangeImage";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <div class="container-fluid">
-    <h1 class="m-4">Change Group Image</h1>
+    <h1 class="m-4">Change Meeting Image</h1>
     <hr />
-    @using (Html.BeginForm("ChangeImage", "Group", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    @using (Html.BeginForm("ChangeImage", "Meeting", FormMethod.Post, new { enctype = "multipart/form-data" }))
     {
         @Html.AntiForgeryToken()
 
-        <input type="hidden" value="@Model.GroupID" name="groupID" />
+        <input type="hidden" value="@Model.MeetingID" name="meetingID" />
 
         <div class="heading">
-            <img id="groupImage" src=@Model.GroupImage alt="Group Image" style="width:200px;height:200px" />
+            <img id="meetingImage" src=@Model.Image alt="Meeting Image" style="width:200px;height:200px" />
         </div>
 
         <div class="group-details">
@@ -34,7 +33,7 @@
             var reader = new FileReader();
 
             reader.onload = function (e) {
-                $('#groupImage')
+                $('#meetingImage')
                     .attr('src', e.target.result)
             };
 
@@ -42,3 +41,6 @@
         }
     }
 </script>
+
+
+
