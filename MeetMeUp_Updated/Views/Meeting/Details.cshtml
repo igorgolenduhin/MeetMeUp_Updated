@@ -6,7 +6,7 @@
     <hr />
 
     <div class="heading">
-        <img src=@Model.Image alt="Meeting Image" style="width:150px;height:150px" />
+        <img src=@Model.Image class="rounded-circle mr-3" alt="Meeting Image" style="width:150px;height:150px" />
         <div class="heading-text">
             <h2>@Model.Title</h2>
             @Html.ActionLink("Edit picture", "ChangeImage", "Meeting", new { meetingID = Model.MeetingID }, null)

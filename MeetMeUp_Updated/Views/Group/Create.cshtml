@@ -9,22 +9,22 @@
     {
         @Html.AntiForgeryToken()
 <div style="margin-left:20px">
-    <div class="list-group">
+    <div class="list-group w-50">
         <h4>Group name:</h4>
         @Html.EditorFor(model => model.GroupName, new { htmlAttributes = new { @class = "form-control" } })
         @Html.ValidationMessageFor(model => model.GroupName, "", new { @class = "text-danger" })
     </div>
 
-    <div class="list-group" style="margin-top:30px">
+    <div class="list-group w-50" style="margin-top:30px">
         <h4>Group Image</h4>
         <input type="file" name="GroupImage" id="GroupImage"/>
         @Html.ValidationMessageFor(model => model.GroupImage, "", new { @class = "text-danger"})
     </div>
 
-    <div id="members">
+    <div id="members" class="m-3">
         @Html.ValidationMessage("InvalidUser", new { @class = "text-danger" })
     </div>
-    <div class="list-group" style="margin-top:30px">
+    <div class="list-group w-50" style="margin-top:30px">
         <h4>Add member:</h4>
         <input type="email" class="form-control" id="memberEmail" name="memberEmail" required>
     </div>
@@ -34,7 +34,7 @@
     <br />
 
 
-    <button type="submit" class="btn btn-primary btn-default" style="margin-top:20px">Save Group</button>
+    <button type="submit" class="btn btn-primary btn-lg" style="margin-top:20px">Save Group</button>
 </div>
 
     }
@@ -52,6 +52,7 @@
                 var display = document.createElement("p");
                 var input = document.createElement("input");
                 display.append(value);
+                display.className = "m-0";
                 input.type = "hidden";
                 input.name = "Members";
                 input.className = "form-control";

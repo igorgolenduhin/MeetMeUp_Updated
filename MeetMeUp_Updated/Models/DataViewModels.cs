@@ -9,6 +9,7 @@ namespace MeetMeUp_Updated.Models
 {
     public class GroupCreateViewModel
     {
+        [Required(ErrorMessage = "Please provide group name")]
         public string GroupName { get; set; }
 
         public HttpPostedFileBase GroupImage { get; set; }
