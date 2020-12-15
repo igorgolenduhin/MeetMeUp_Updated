@@ -40,7 +40,7 @@ namespace MeetMeUp_Updated.Controllers
                 db.Entry(applicationUser).State = System.Data.Entity.EntityState.Modified;
                 db.SaveChanges();
             }
-            return View();
+            return RedirectToAction("MyProfile");
         }
 
 

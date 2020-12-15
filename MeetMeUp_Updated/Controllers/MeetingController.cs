@@ -39,7 +39,7 @@ namespace MeetMeUp_Updated.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Title,Date,Time,SelectedGroup,Place")] MeetingCreateViewModel model)
+        public ActionResult Create([Bind(Include = "Title,Date,Time,SelectedGroup,Place,Image")] MeetingCreateViewModel model)
         {
             if (!ModelState.IsValid)
             {
@@ -53,6 +53,17 @@ namespace MeetMeUp_Updated.Controllers
             meeting.Time = model.Time;
             meeting.Place = model.Place;
             meeting.GroupID = int.Parse(model.SelectedGroup);
+
+            if (model.Image != null)
+            {
+                //Creating filename and path for a picture
+                string pic = System.IO.Path.GetFileName(model.Image.FileName);
+                string path = System.IO.Path.Combine(Server.MapPath("/Assets/Images/MeetingPics/"), pic);
+
+                //saving image on a server and adding path to db
+                model.Image.SaveAs(path);
+                meeting.Image = "/Assets/Images/MeetingPics/" + pic;
+            }
 
 
             db.Meetings.Add(meeting);
