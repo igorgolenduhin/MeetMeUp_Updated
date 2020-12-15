@@ -111,3 +111,15 @@
     right:0;
     z-index: 1;
 }
+
+.image-margin{
+    padding-right:300px;
+}
+
+#page-content-wrapper {
+    background-image: url('/Assets/Images/meeting.jpg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: 300px;
+    background-position: right bottom;
+}

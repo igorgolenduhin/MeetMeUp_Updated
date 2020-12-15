@@ -5,10 +5,10 @@
     <hr />
 
     <div class="heading">
-        <img src=@Model.GroupImage alt="Group Image" style="width:150px;height:150px" />
+        <img src=@Model.GroupImage class="rounded-circle mr-3" alt="Group Image" style="width:150px;height:150px" />
         <div class="heading-text">
             <h2>@Model.GroupName</h2>
-            @Html.ActionLink("Edit picture", "ChangeImage", "Group")
+            @Html.ActionLink("Edit picture", "ChangeImage", "Group", new { groupID = Model.GroupID }, null)
         </div>
     </div>
 
@@ -26,7 +26,7 @@
         </ul>
     </div>
 
-    <div class="group-details">
+    <div class="group-details image-margin">
         <h3>Group Meetings:</h3>
         <div class="list-group">
 
@@ -44,5 +44,6 @@
         </div>
     </div>
     @Html.ActionLink("Create new meeting", "Create", "Meeting", new { id = Model.GroupID }, new { @class = "btn btn-primary btn-lg m-4" })
+</div>
 
     

@@ -5,8 +5,18 @@
 
 <div class="container-fluid">
     <h1 class="m-4">My meetings</h1>
-    <hr/>
-    <div class="list-group">
+    <hr />
+
+    @using (Html.BeginForm("Meetings", "Meeting", FormMethod.Get))
+    {
+    <div class="group mb-3">
+        @Html.TextBox("query", null, new { @class = "form-control mr-sm-2 w-25 d-inline" })
+        <input type="submit" class="btn btn-primary btn-rounded btn-md my-0 d-inline" value="Search" />
+    </div>
+        
+   }
+
+    <div class="list-group image-margin">
 
         @foreach (var meeting in Model)
         {

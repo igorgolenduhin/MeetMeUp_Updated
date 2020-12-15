@@ -3,9 +3,18 @@
     ViewBag.Title = "Groups";
 }
 
-<div class="container-fluid">
+<div class="container-fluid image-margin">
     <h1 class="m-4">My groups</h1>
-    <hr/>
+    <hr />
+
+    @using (Html.BeginForm("Groups", "Group", FormMethod.Get))
+    {
+        <div class="group mb-3">
+            @Html.TextBox("query", null, new { @class = "form-control mr-sm-2 w-25 d-inline" })
+            <input type="submit" class="btn btn-primary btn-rounded btn-md my-0 d-inline" value="Search" />
+        </div>
+    }
+
     <div class="list-group">
 
         @foreach (var group in Model)

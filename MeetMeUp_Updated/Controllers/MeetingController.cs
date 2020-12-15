@@ -14,9 +14,15 @@ namespace MeetMeUp_Updated.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
         // GET: Meeting
-        public ActionResult Meetings()
+        public ActionResult Meetings(String query)
         {
             var allMeetings = db.Meetings.ToList();
+
+            if (query != null)
+            {
+                allMeetings = allMeetings.Where(m => m.Title.ToLower().Contains(query.ToLower())).ToList();
+            }
+
             var myMeetings = allMeetings.Where(m => getMyGroupsList().Contains(m.Group)).ToList();
             return View(myMeetings);
         }
@@ -33,7 +39,7 @@ namespace MeetMeUp_Updated.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Title,Date,Time,SelectedGroup,Place")] MeetingCreateViewModel model)
+        public ActionResult Create([Bind(Include = "Title,Date,Time,SelectedGroup,Place,Image")] MeetingCreateViewModel model)
         {
             if (!ModelState.IsValid)
             {
@@ -47,6 +53,17 @@ namespace MeetMeUp_Updated.Controllers
             meeting.Time = model.Time;
             meeting.Place = model.Place;
             meeting.GroupID = int.Parse(model.SelectedGroup);
+
+            if (model.Image != null)
+            {
+                //Creating filename and path for a picture
+                string pic = System.IO.Path.GetFileName(model.Image.FileName);
+                string path = System.IO.Path.Combine(Server.MapPath("/Assets/Images/MeetingPics/"), pic);
+
+                //saving image on a server and adding path to db
+                model.Image.SaveAs(path);
+                meeting.Image = "/Assets/Images/MeetingPics/" + pic;
+            }
 
 
             db.Meetings.Add(meeting);
@@ -82,6 +99,38 @@ namespace MeetMeUp_Updated.Controllers
             var user = db.Users.Find(User.Identity.GetUserId());
             var allGroups = db.Groups.ToList();
             return allGroups.Where(g => g.Members.Contains(user)).ToList();
+        }
+
+        [HttpGet]
+        public ActionResult ChangeImage(int? meetingID)
+        {
+            if (meetingID == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Meeting meeting = db.Meetings.Find(meetingID);
+            if (meeting == null)
+            {
+                return HttpNotFound();
+            }
+            return View(meeting);
+        }
+        [HttpPost]
+        public ActionResult ChangeImage(HttpPostedFileBase fileUpload1, int meetingID)
+        {
+            if (fileUpload1 != null)
+            {
+                string pic = System.IO.Path.GetFileName(fileUpload1.FileName);
+                string path = System.IO.Path.Combine(Server.MapPath("/Assets/Images/MeetingPics/"), pic);
+
+                fileUpload1.SaveAs(path);
+                Meeting meeting = db.Meetings.Find(meetingID);
+                meeting.Image = "/Assets/Images/MeetingPics/" + pic;
+                db.Entry(meeting).State = System.Data.Entity.EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Details", new { id = meetingID });
+            }
+            return View();
         }
     }
 }
